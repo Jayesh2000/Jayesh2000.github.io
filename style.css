@@ -1,117 +1,263 @@
-/* --- Global Styles --- */
+/* --- Global Styles & Background --- */
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     line-height: 1.6;
     margin: 0;
-    background-color: #f4f7f6;
-    color: #333;
+    color: #EAEAEA;
+    background-color: #121212;
+    background-image: url('background.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(18, 18, 18, 0.85);
+    z-index: -1;
 }
 
 .container {
-    max-width: 900px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 20px;
 }
 
 /* --- Header --- */
 header {
-    background-color: #2c3e50;
-    color: #ecf0f1;
+    background: none;
     text-align: center;
-    padding: 40px 20px;
+    padding: 60px 20px;
+    border-bottom: 1px solid #333;
 }
 
 header h1 {
     margin: 0;
-    font-size: 2.5em;
-}
-
-header p {
-    margin: 5px 0 20px;
-    font-size: 1.2em;
-    color: #bdc3c7;
+    font-size: 3em;
+    color: #FFFFFF;
 }
 
 .contact-info a {
-    color: #ecf0f1;
+    color: #BDBDBD;
     text-decoration: none;
-    margin: 0 10px;
-    font-weight: bold;
-    border-bottom: 2px solid transparent;
-    transition: border-bottom 0.3s;
+    transition: color 0.3s;
 }
 
 .contact-info a:hover {
-    border-bottom: 2px solid #3498db;
+    color: #4A90E2;
 }
 
-/* --- Sections --- */
+/* --- General Section & Card Style --- */
 section {
-    background: #ffffff;
-    margin-bottom: 20px;
+    background: rgba(41, 42, 45, 0.8);
+    margin-bottom: 30px;
     padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    border-radius: 12px;
+    border: 1px solid #333;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 h2 {
-    color: #2c3e50;
-    border-bottom: 3px solid #3498db;
-    padding-bottom: 10px;
-    margin-top: 0;
-    font-size: 1.8em;
+    color: #FFFFFF;
+    border: none;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+    font-size: 2.2em;
+    text-align: center;
 }
 
-/* --- Profile Photo and Summary --- */
-#summary {
+/* --- Profile Photo & About Me --- */
+#about {
     display: flex;
     align-items: center;
     gap: 30px;
+    background: none;
+    border: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: none;
+    padding-top: 0;
 }
 
 #profile-photo {
     width: 150px;
     height: 150px;
-    border-radius: 50%; /* Makes the image a circle */
-    border: 4px solid #3498db;
-    object-fit: cover; /* Prevents image distortion */
+    border-radius: 50%;
+    border: 4px solid #4A90E2;
+    object-fit: cover;
+    flex-shrink: 0;
 }
 
-.summary-text h2 {
+.about-text h2 {
+    text-align: left;
+}
+
+/* --- Experience (Timeline Style) --- */
+#experience .job {
+    position: relative;
+    padding-left: 40px;
+    margin-bottom: 30px;
+}
+
+#experience .job::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    width: 2px;
+    height: 100%;
+    background: #444;
+}
+
+#experience .job:last-child::before {
+    height: calc(100% - 40px);
+}
+
+#experience .job::after {
+    content: '\f0b1';
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    top: 5px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #4A90E2;
+    color: #121212;
+    text-align: center;
+    line-height: 20px;
+    font-size: 12px;
+}
+
+/* --- Grid Layout for Projects, Education, Awards --- */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+/* --- Card Styles (Project, Education, Honor, Publication) --- */
+.project-card, .education-card, .honor-card, .publication-card {
+    background: #1E1E1E;
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid #383838;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-card:hover, .education-card:hover, .honor-card:hover, .publication-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}
+
+.project-card h3, .education-card h3, .honor-card h3, .publication-card h3 {
+    color: #FFFFFF;
     margin-top: 0;
 }
 
-/* --- Icons in Headings --- */
-h2 .fa-solid {
-    margin-right: 15px;
-    color: #3498db; /* Icon color */
+.project-card p, .education-card p, .honor-card p, .publication-card p {
+    color: #BDBDBD;
+}
+
+/* --- Education Card Icon --- */
+.education-card {
+    position: relative;
+    padding-left: 50px;
+}
+.education-card::before {
+    content: '\f19d';
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    left: 15px;
+    top: 25px;
+    font-size: 24px;
+    color: #4A90E2;
+}
+
+/* --- Honor Card Icon --- */
+.honor-card {
+    position: relative;
+    padding-left: 50px;
+}
+.honor-card::before {
+    content: '\f559'; /* Award/Ribbon Icon */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    left: 15px;
+    top: 25px;
+    font-size: 24px;
+    color: #4A90E2;
+}
+
+
+/* --- Publication Card Icon --- */
+.publication-card {
+    position: relative;
+    padding-left: 50px;
+}
+.publication-card::before {
+    content: '\f518'; /* File/Document Icon */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    left: 15px;
+    top: 25px;
+    font-size: 24px;
+    color: #4A90E2;
+}
+
+
+/* --- Tech & Skill Tags --- */
+.tech-tag {
+    display: inline-block;
+    background-color: #2E3B4E;
+    color: #A7C5F3;
+    padding: 4px 12px;
+    border-radius: 12px;
+    margin: 4px 2px;
+    font-size: 0.85em;
+}
+
+.skills-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.skill-category h3 {
+    color: #BDBDBD;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #444;
+    padding-bottom: 8px;
+}
+
+.skill-tag {
+    display: inline-block;
+    background-color: #333;
+    color: #E0E0E0;
+    padding: 6px 14px;
+    border-radius: 16px;
+    margin: 4px;
     font-size: 0.9em;
-    vertical-align: middle;
+    transition: background-color 0.3s;
 }
 
-/* --- Specific Section Content --- */
-.job, .project-card, .education-entry {
-    margin-bottom: 20px;
-}
-
-.job h3, .project-card h3, .education-entry h3 {
-    margin-bottom: 5px;
-    color: #34495e;
-}
-
-ul {
-    padding-left: 20px;
-    list-style-type: disc;
-}
-
-#skills p {
-    margin: 5px 0;
+.skill-tag:hover {
+    background-color: #4A90E2;
 }
 
 /* --- Footer --- */
 footer {
     text-align: center;
-    padding: 20px;
-    font-size: 0.9em;
-    color: #7f8c8d;
+    padding: 40px 20px;
+    color: #888;
 }
